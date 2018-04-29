@@ -1,9 +1,10 @@
-var mysql=require('mysql');
+var mysql = require('mysql');
  var connection = mysql.createPool({
     host:'35.194.2.165',
     user:'SA',
     password:'ziggy11!!',
-    database:'aggregator'
+    database:'aggregator',
+    connectTimeout: 30000
     // socketPath: "/cloudsql/projectName:zone:instance-name"
     // socketPath: '/cloudsql/projectName:zone:instance-name'
 });
