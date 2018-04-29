@@ -3,7 +3,8 @@ var mysql=require('mysql');
     host:'35.194.2.165',
     user:'SA',
     password:'ziggy11!!',
-    database:'aggregator'
+    database:'aggregator',
+    socketPath: "/cloudsql/projectName:zone:instance-name"
     // socketPath: '/cloudsql/projectName:zone:instance-name'
 });
  module.exports=connection;
