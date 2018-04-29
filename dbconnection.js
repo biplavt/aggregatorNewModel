@@ -3,8 +3,8 @@ var mysql = require('mysql');
     host:'35.194.2.165',
     user:'SA',
     password:'ziggy11!!',
-    database:'aggregator',
-    connectTimeout: 30000
+    database:'aggregator'
+    // connectTimeout: 30000
     // socketPath: "/cloudsql/projectName:zone:instance-name"
     // socketPath: '/cloudsql/projectName:zone:instance-name'
 });
