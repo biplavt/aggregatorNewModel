@@ -1,7 +1,7 @@
 var mysql=require('mysql');
  var connection=mysql.createPool({
  
-host:'35.194.2.165',
+host:'api-project-347754878770:us-central1:asdagggc',
  user:'SA',
  password:'ziggy11!!',
  database:'aggregator'
