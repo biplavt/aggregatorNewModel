@@ -16,7 +16,7 @@ router.get('/:id?', function (req, res, next) {
             }
         });
     } else {
-        console.log(req.headers);
+       
         AASF.getAllAASF(function (err, rows) {
 
             if (err) {
@@ -35,7 +35,8 @@ router.post('/', function (req, res, next) {
         if (err) {
             res.json(err);
         } else {
-            res.json(req.body); //or return count for 1 &amp;amp;amp; 0
+            // console.log(count.insertId);
+            res.json(count.insertId); //or return count for 1 &amp;amp;amp; 0
             
         }
     });

@@ -21,25 +21,23 @@ var AASF = {
   },
   
   getAASFByLocation: function (location, locState, callback) {
-
     return db.query("select * from AASF_TB where locationName=? AND  locState=? ", [location, locState], callback);
   },
   
   getAASFById: function (id, callback) {
-
     return db.query("select * from AASF_TB where AASFID=?", [id], callback);
   },
-  addAASF: function (AASF, callback) {
-  var responseJson = ObjToArray(AASF.AASF_TB);
-  console.log(responseJson);
 
+  addAASF: function (AASF, callback) {
+  var sendData = ObjToArray(AASF.AASF_TB);
   var sql = "INSERT INTO AASF_TB (locState,lng,locZip,locPocPhone,calendarID,clientID,locationName,locCity,locStreet,timezone,calendarAPIKey,lat,locPocEmail) VALUES ?";
-    return db.query(sql, [responseJson], callback);
-    // return db.query(sql, [responseJson], callback);
+    return db.query(sql, [sendData], callback);
   },
+
   deleteAASF: function (id, callback) {
     return db.query("delete from AASF_TB where AASFID=?", [id], callback);
   },
+
   updateAASF: function (id, Task, callback) {
     return db.query("update AASF_TB Title=?,Status=? where Id=?", [Task.Title, Task.Status, id], callback);
   }
