@@ -31,7 +31,7 @@ router.get('/:id?', function (req, res, next) {
 router.post('/', function (req, res, next) {
     // var data = JSON.parse(AASF);
     AASF.addAASF(req.body, function (err, count) {
-        // console.log(req.body);
+        console.log(req.body);
         if (err) {
             res.json(err);
         } else {

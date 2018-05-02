@@ -30,7 +30,8 @@ var AASF = {
 
   addAASF: function (AASF, callback) {
   var sendData = ObjToArray(AASF.AASF_TB);
-  var sql = "INSERT INTO AASF_TB (locState,lng,locZip,locPocPhone,calendarID,clientID,locationName,locCity,locStreet,timezone,calendarAPIKey,lat,locPocEmail) VALUES ?";
+  console.log(sendData);
+  var sql = "INSERT INTO AASF_TB (locState,lng,locZip,locPocPhone,siteID,calendarID,clientID,locationName,locCity,locStreet,timezone,calendarAPIKey,lat,locPocEmail) VALUES ?";
     return db.query(sql, [sendData], callback);
   },
 
