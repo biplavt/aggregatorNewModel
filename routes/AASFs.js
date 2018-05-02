@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var Task = require('../models/Task');
+var AASF = require('../models/AASF');
 
 router.get('/:id?', function (req, res, next) {
-
+    // getAASFByLocation
+    console.log(req.params)
+   
     if (req.params.id) {
-       
-        Task.getTaskById(req.params.id, function (err, rows) {
+        AASF.getAASFById(req.params.id, function (err, rows) {
 
             if (err) {
                 res.json(err);
@@ -15,8 +16,8 @@ router.get('/:id?', function (req, res, next) {
             }
         });
     } else {
-
-        Task.getAllTasks(function (err, rows) {
+        console.log(req.headers);
+        AASF.getAllAASF(function (err, rows) {
 
             if (err) {
                 res.json(err);
@@ -28,8 +29,8 @@ router.get('/:id?', function (req, res, next) {
     }
 });
 router.post('/', function (req, res, next) {
-    // var data = JSON.parse(Task);
-    Task.addTask(req.body, function (err, count) {
+    // var data = JSON.parse(AASF);
+    AASF.addAASF(req.body, function (err, count) {
         // console.log(req.body);
         if (err) {
             res.json(err);
@@ -41,7 +42,7 @@ router.post('/', function (req, res, next) {
 });
 router.delete('/:id', function (req, res, next) {
 
-    Task.deleteTask(req.params.id, function (err, count) {
+    AASF.deleteAASF(req.params.id, function (err, count) {
 
         if (err) {
             res.json(err);
@@ -53,7 +54,7 @@ router.delete('/:id', function (req, res, next) {
 });
 router.put('/:id', function (req, res, next) {
 
-    Task.updateTask(req.params.id, req.body, function (err, rows) {
+    AASF.updateAASF(req.params.id, req.body, function (err, rows) {
 
         if (err) {
             res.json(err);
