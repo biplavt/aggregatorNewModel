@@ -29,17 +29,15 @@ router.get('/:id?', function (req, res, next) {
     }
 });
 router.post('/', function (req, res, next) {
-    // var data = JSON.parse(AASF);
-    AASF.addAASF(req.body, function (err, count) {
-        console.log(req.body);
+    AASF.upsertAASFAndState(req.body, function (err, count) {
         if (err) {
             res.json(err);
         } else {
-            // console.log(count.insertId);
             res.json(count.insertId); //or return count for 1 &amp;amp;amp; 0
-            
         }
-    });
+    }); 
+       
+   
 });
 router.delete('/:id', function (req, res, next) {
 
