@@ -1,0 +1,79 @@
+
+CREATE TABLE `aggregator`.`aircraftData_TB` (
+  `aircraftDataID` INT NOT NULL AUTO_INCREMENT,
+  `aircraft` VARCHAR(45) NULL,
+  `up` DATETIME NOT NULL,
+  `down` DATETIME NOT NULL,
+  `date` DATETIME NOT NULL,
+  PRIMARY KEY (`aircraftDataID`));
+
+
+CREATE TABLE `aggregator`.`crewData_TB` (
+  `crewDataID` INT NOT NULL AUTO_INCREMENT,
+  `aircraft` VARCHAR(45) NULL,
+  `ce` DATETIME NOT NULL,
+  `mo` DATETIME NOT NULL,
+  `pc` DATETIME NOT NULL,
+  `pi` DATETIME NOT NULL,
+  `fe` DATETIME NOT NULL,
+  `date` DATETIME NOT NULL,
+  PRIMARY KEY (`crewDataID`));
+
+
+
+CREATE TABLE `aggregator`.`AFTPData_TB` (
+  `aftpDataID` INT NOT NULL AUTO_INCREMENT,
+  `aftpLoggedNumber` VARCHAR(345) NULL,
+  `aftpUnPaidCost` VARCHAR(45) NULL,
+  `aftpUnPaidNumber` VARCHAR(45) NULL,
+  `aftpTotalPaidCost` VARCHAR(45) NULL,
+  `aftpTotalPaidNumber` VARCHAR(45) NULL,
+  `aftpTiness` VARCHAR(45) NULL,
+  `aftpLoggedCost` VARCHAR(45) NULL,
+  `aftpUnCertifiedCost` VARCHAR(45) NOT NULL,
+  `aftpUnCertifiedNumber` VARCHAR(45) NULL,
+  `date` DATETIME NOT NULL,
+  PRIMARY KEY (`aftpDataID`));
+
+
+CREATE TABLE `aggregator`.`ac_TB` (
+  `acID` INT NOT NULL AUTO_INCREMENT,
+  `migDate` DATETIME NULL,
+  `workOrder` VARCHAR(45) NULL,
+  `remarksUpdatedBy` VARCHAR(45) NULL,
+  `pmd_hours` VARCHAR(45) NULL,
+  `remarks` VARCHAR(45) NULL,
+  `MCRate` VARCHAR(45) NULL,
+  `uic` VARCHAR(45) NOT NULL,
+  `status` VARCHAR(45) NULL,
+  `phase_due` VARCHAR(45) NULL,
+  `ei_sn` VARCHAR(45) NOT NULL,
+  `ei_model` VARCHAR(45) NULL,
+  `remarksUpdatedLast` VARCHAR(45) NULL,
+  `coloroverride` VARCHAR(45) NULL,
+  `date` DATETIME NOT NULL,
+  PRIMARY KEY (`acID`));
+
+
+
+CREATE TABLE `aggregator`.`mission_TB` (
+  `missionID` INT NOT NULL AUTO_INCREMENT,
+  `flightApprovedBy` VARCHAR(345) NULL,
+  `flightEventEstHours` VARCHAR(45) NULL,
+  `flightEventStart` VARCHAR(45) NULL,
+  `category` VARCHAR(45) NULL,
+  `flightEventEnd` VARCHAR(45) NULL,
+  `flightMissionNumber` VARCHAR(45) NULL,
+  `flightEventTitle` VARCHAR(545) NOT NULL,
+  `flightEventText` VARCHAR(MAX) NULL,
+  `flightApproved` VARCHAR(45) NULL,
+  `date` DATETIME NOT NULL,
+  PRIMARY KEY (`missionID`));
+
+
+
+
+
+
+
+

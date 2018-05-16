@@ -1,12 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var AASF = require('../models/AASF');
+var AASF = require('../models/aasf.model');
 
 router.get('/:id?', function (req, res, next) {
-    // getAASFByLocation
-    console.log(req.params)
-   
-    if (req.params.id) {
+    if (req.params.id) {y
         AASF.getAASFById(req.params.id, function (err, rows) {
 
             if (err) {
@@ -39,27 +36,5 @@ router.post('/', function (req, res, next) {
        
    
 });
-router.delete('/:id', function (req, res, next) {
 
-    AASF.deleteAASF(req.params.id, function (err, count) {
-
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(count);
-        }
-
-    });
-});
-router.put('/:id', function (req, res, next) {
-
-    AASF.updateAASF(req.params.id, req.body, function (err, rows) {
-
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(rows);
-        }
-    });
-});
 module.exports = router;

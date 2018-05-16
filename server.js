@@ -1,14 +1,18 @@
 var express = require('express');
-const Knex = require('knex');
+// const Knex = require('knex');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors=require('cors');
+
 var routes = require('./routes/index');
-var users = require('./routes/users');
-var AASFs = require('./routes/AASFs');
+var aasfRoute = require('./routes/aasf.route');
+// var aircraftRoute = require('./routes/aircraft.route');
+// var crewRoute = require('./routes/crew.route');
+// var fhpRoute = require('./routes/fhp.route');
+
 var app = express();
  
 // view engine setup
@@ -28,8 +32,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', routes);
-app.use('/users', users);
-app.use('/AASFs', AASFs);
+app.use('/aasf', aasfRoute);
+// app.use('/aircraft', aircraftRoute);
+// app.use('/crews', crewsRoute);
+// app.use('/fhp', fhpRoute);
+
+
+
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
 var err = new Error('Not Found');
