@@ -8,6 +8,14 @@ CREATE TABLE `aggregator`.`aircraftData_TB` (
   PRIMARY KEY (`aircraftDataID`));
 
 
+CREATE TABLE `aggregator`.`aircraftType_TB` (
+  `aircraftTypeID` INT NOT NULL AUTO_INCREMENT,
+  `siteID` VARCHAR(45) NOT NULL,
+  `aircraftType` VARCHAR(45) NOT NULL,
+  `date` DATETIME NOT NULL,
+  PRIMARY KEY (`aircraftDataID`));
+
+
 CREATE TABLE `aggregator`.`crewData_TB` (
   `crewDataID` INT NOT NULL AUTO_INCREMENT,
   `aircraft` VARCHAR(45) NULL,
