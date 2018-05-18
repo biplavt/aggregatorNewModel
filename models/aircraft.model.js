@@ -24,13 +24,15 @@ var aircraft = {
               let insertValues = ObjToArray(aircraft.aircraftType_TB);
               let created = new Date();
               // Remove all aircraft
-             return removeAircraftTypeBySiteID(newSiteID, function (err, result, fields) {
+              removeAircraftTypeBySiteID(newSiteID, function (err, result, fields) {
                     if(result && (result.affectedRows !== undefined && result.affectedRows !== null)) { 
                         insertValues.forEach(valueData => {
                         let tempSiteID = valueData[1];
                         let tempAircraft = valueData[0];
                             //  Insert all aircraft
                             insertACTypes(tempSiteID, tempAircraft, created, function (err, result, fields) {
+                                // console.log(result)
+                                callback(fields, 0);
                                 return result;
                             })
                         })

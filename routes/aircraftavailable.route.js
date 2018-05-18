@@ -15,8 +15,6 @@ router.post('/', function (req, res, next) {
             
         } else {
             aircraft.insertJoin(siteID,count.insertId, function (err, extra) {
-          
-              
                 if (err) {
                     res.json(err);
                 } else {
