@@ -18,24 +18,28 @@ var aircraft = {
             var post = {'siteID':tempSiteID, 'aircraftType':tempAircraft, 'date':created}
             return db.query('INSERT INTO aircraftType_TB SET ?', post, insertCallBack);  
         }
+       
         if (typeof aircraft.aircraftType_TB[0].siteID !== 'undefined' || aircraft.aircraftType_TB[0].siteID === null) {
               let newSiteID = aircraft.aircraftType_TB[0].siteID;
               let insertValues = ObjToArray(aircraft.aircraftType_TB);
               let created = new Date();
               // Remove all aircraft
-              removeAircraftTypeBySiteID(newSiteID, function (err, result, fields) {
-                  if(result.affectedRows !== undefined && result.affectedRows !== null) { 
-                    insertValues.forEach(valueData => {
-                      let tempSiteID = valueData[1];
-                      let tempAircraft = valueData[0];
-                          //  Insert all aircraft
-                          insertACTypes(tempSiteID, tempAircraft, created, function (err, result, fields) {
-                              console.log(result);
-                          })
-                      })
-                  }
+             return removeAircraftTypeBySiteID(newSiteID, function (err, result, fields) {
+                    if(result && (result.affectedRows !== undefined && result.affectedRows !== null)) { 
+                        insertValues.forEach(valueData => {
+                        let tempSiteID = valueData[1];
+                        let tempAircraft = valueData[0];
+                            //  Insert all aircraft
+                            insertACTypes(tempSiteID, tempAircraft, created, function (err, result, fields) {
+                                return result;
+                            })
+                        })
+                    }
               })
+              
+        
         }
+       
     }
 }
 module.exports = aircraft;
