@@ -17,13 +17,10 @@ var AASF = {
     var insertValues = ObjToArray(AASF.AASF_TB);
     var valueData = AASF.AASF_TB[0];
     var siteID = valueData.siteID;
-    
     // var state = {"stateName":valueData.locState}
     var stateData = valueData.locState;
-    
     var sql = "INSERT INTO AASF_TB (locState,lng,locZip,locPocPhone,siteID,calendarID,clientID,locationName,locCity,locStreet,timezone,calendarAPIKey,lat,locPocEmail) VALUES ?" +
     " ON DUPLICATE KEY UPDATE ?"
-
     var updateSql = {"locState":valueData.locState, "lng":valueData.lng, "locZip":valueData.locZip, "locPOCphone":valueData.locPOCphone, "siteID":valueData.siteID, "clientID":valueData.clientID, "calendarID":valueData.calendarID, "locationName":valueData.locationName, "locCity":valueData.locCity, "locStreet":valueData.locStreet, "timezone":valueData.timezone, "calendarAPIKey":valueData.calendarAPIKey, "lat":valueData.lat, "locPOCEmail":valueData.locPOCEmail}
     var upsertState = function (state, newCallback){
           var insertStateValues = [[stateData,siteID]];

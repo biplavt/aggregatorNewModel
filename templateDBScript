@@ -1,29 +1,15 @@
 
-CREATE TABLE `aggregator`.`aircraftData_TB` (
-  `aircraftDataID` INT NOT NULL AUTO_INCREMENT,
-  `aircraft` VARCHAR(45) NULL,
-  `up` DATETIME NOT NULL,
-  `down` DATETIME NOT NULL,
-  `date` DATETIME NOT NULL,
-  PRIMARY KEY (`aircraftDataID`));
-
-
-CREATE TABLE `aggregator`.`aircraftType_TB` (
-  `aircraftTypeID` INT NOT NULL AUTO_INCREMENT,
-  `siteID` VARCHAR(45) NOT NULL,
-  `aircraftType` VARCHAR(45) NOT NULL,
-  `date` DATETIME NOT NULL,
-  PRIMARY KEY (`aircraftDataID`));
 
 
 CREATE TABLE `aggregator`.`crewData_TB` (
   `crewDataID` INT NOT NULL AUTO_INCREMENT,
+  `siteID` VARCHAR(45) NOT NULL,
   `aircraft` VARCHAR(45) NULL,
-  `ce` DATETIME NOT NULL,
-  `mo` DATETIME NOT NULL,
-  `pc` DATETIME NOT NULL,
-  `pi` DATETIME NOT NULL,
-  `fe` DATETIME NOT NULL,
+  `ce` VARCHAR(45) NOT NULL,
+  `mo` VARCHAR(45) NOT NULL,
+  `pc` VARCHAR(45) NOT NULL,
+  `pi` VARCHAR(45) NOT NULL,
+  `fe` VARCHAR(45) NOT NULL,
   `date` DATETIME NOT NULL,
   PRIMARY KEY (`crewDataID`));
 
@@ -80,8 +66,29 @@ CREATE TABLE `aggregator`.`mission_TB` (
 
 
 
+DONE
+CREATE TABLE `aggregator`.`AASFAircraftData_TB` (
+  `AASFAircraftDataID` INT NOT NULL AUTO_INCREMENT,
+  `aircraftDataID` VARCHAR(45) NOT NULL,
+  `siteID` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`AASFAircraftDataID`));
 
 
 
+DONE
+CREATE TABLE `aggregator`.`aircraftType_TB` (
+  `aircraftTypeID` INT NOT NULL AUTO_INCREMENT,
+  `siteID` VARCHAR(45) NOT NULL,
+  `aircraftType` VARCHAR(45) NOT NULL,
+  `date` DATETIME NOT NULL,
+  PRIMARY KEY (`aircraftDataID`));
 
-
+DONE
+CREATE TABLE `aggregator`.`aircraftAvailable_TB` (
+  `aircraftAvailableID` INT NOT NULL AUTO_INCREMENT,
+  `siteID` VARCHAR(45) NOT NULL,
+  `aircraft` VARCHAR(45) NULL,
+  `down` VARCHAR(45) NOT NULL,
+  `up` VARCHAR(45) NOT NULL,
+  `date` DATETIME NOT NULL,
+  PRIMARY KEY (`aircraftAvailableID`));

@@ -1,5 +1,4 @@
 var express = require('express');
-// const Knex = require('knex');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -10,6 +9,8 @@ var cors=require('cors');
 var routes = require('./routes/index');
 var aasfRoute = require('./routes/aasf.route');
 var aircraftRoute = require('./routes/aircraft.route');
+var aircraftAvailable = require('./routes/aircraftAvailable.route');
+
 // var crewRoute = require('./routes/crew.route');
 // var fhpRoute = require('./routes/fhp.route');
 
@@ -34,6 +35,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/aasf', aasfRoute);
 app.use('/aircraft', aircraftRoute);
+app.use('/aircraftavailable', aircraftAvailable);
+
+
+
 // app.use('/crews', crewsRoute);
 // app.use('/fhp', fhpRoute);
 
