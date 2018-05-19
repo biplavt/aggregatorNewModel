@@ -11,10 +11,11 @@ function ObjToArray(obj) {
 }
 var aircraft = {
     insertAircraftAvailable: function (aircraft, callback) {
-        aircraft.aircraftData_TB.pop();
+        aircraft.aircraftData_TB.pop(); //removes siteID
         let insertValues = ObjToArray(aircraft.aircraftData_TB);
+        insertValues = [].concat.apply([], insertValues);//removes outer []'s
         var sql = "INSERT INTO aircraftAvailable_TB (total, date, down, category, up) VALUES ?";
-        return db.query(sql, insertValues, callback)
+        return db.query(sql, [insertValues], callback)
     },
     insertJoin: function (siteID, aircraftDataID, newcallback) {
         let joininsertValues = [[aircraftDataID, siteID]];
