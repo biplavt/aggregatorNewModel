@@ -35,9 +35,24 @@ router.post('/', function (req, res, next) {
             res.json(err);
         } else {
             console.log('Nuked AASFAircraft TB')
-            res.json('done'); //or return count for 1 &amp;amp;amp; 0
         }
     }); 
+    nuke.crewData(function (err, count) {
+        if (err) {
+            res.json(err);
+        } else {
+            console.log('Nuked crewData_TB')
+        }
+    });
+    nuke.AASFcrewData(function (err, count) {
+        if (err) {
+            res.json(err);
+        } else {
+            console.log('Nuked AASFcrewData')
+            res.json('done'); //or return count for 1 &amp;amp;amp; 0
+        }
+    });  
+    
 });
 
 module.exports = router;

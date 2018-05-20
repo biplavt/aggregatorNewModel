@@ -30,5 +30,13 @@ var nuke = {
         let sql = "TRUNCATE TABLE AASFAircraftData_TB";
         return db.query(sql, callback)
     },
+    crewData: function (callback) {
+        let sql = "TRUNCATE TABLE crewData_TB";
+        return db.query(sql, callback)
+    },
+    AASFcrewData: function (callback) {
+        let sql = "TRUNCATE TABLE AASFCrewData_TB";
+        return db.query(sql, callback)
+    },
 }
 module.exports = nuke;
