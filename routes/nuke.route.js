@@ -49,10 +49,25 @@ router.post('/', function (req, res, next) {
             res.json(err);
         } else {
             console.log('Nuked AASFcrewData')
+        }
+    }); 
+    nuke.aftpData(function (err, count) {
+        if (err) {
+            res.json(err);
+        } else {
+            console.log('Nuked AFTPData_TB')
+        }
+    });
+    nuke.AASFaftpData(function (err, count) {
+        if (err) {
+            res.json(err);
+        } else {
+            console.log('Nuked AASFAFTP_TB')
             res.json('done'); //or return count for 1 &amp;amp;amp; 0
         }
-    });  
+    });   
     
 });
 
 module.exports = router;
+

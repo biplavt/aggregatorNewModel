@@ -1,20 +1,4 @@
 
-
-CREATE TABLE `aggregator`.`AFTPData_TB` (
-  `aftpDataID` INT NOT NULL AUTO_INCREMENT,
-  `aftpLoggedNumber` VARCHAR(345) NULL,
-  `aftpUnPaidCost` VARCHAR(45) NULL,
-  `aftpUnPaidNumber` VARCHAR(45) NULL,
-  `aftpTotalPaidCost` VARCHAR(45) NULL,
-  `aftpTotalPaidNumber` VARCHAR(45) NULL,
-  `aftpTiness` VARCHAR(45) NULL,
-  `aftpLoggedCost` VARCHAR(45) NULL,
-  `aftpUnCertifiedCost` VARCHAR(45) NOT NULL,
-  `aftpUnCertifiedNumber` VARCHAR(45) NULL,
-  `date` DATETIME NOT NULL,
-  PRIMARY KEY (`aftpDataID`));
-
-
 CREATE TABLE `aggregator`.`ac_TB` (
   `acID` INT NOT NULL AUTO_INCREMENT,
   `migDate` DATETIME NULL,
@@ -100,3 +84,25 @@ CREATE TABLE `aggregator`.`AASFCrewData_TB` (
   `crewDataID` INT NOT NULL,
   `siteID` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`AASFCrewDataID`));
+
+  DONE
+CREATE TABLE `aggregator`.`AFTPData_TB` (
+  `aftpDataID` INT NOT NULL AUTO_INCREMENT,
+  `aftpLoggedNumber` VARCHAR(345) NULL,
+  `aftpTimeliness` VARCHAR(45) NULL,
+  `aftpUnPaidCost` VARCHAR(45) NULL,
+  `aftpUnPaidNumber` VARCHAR(45) NULL,
+  `aftpTotalPaidCost` VARCHAR(45) NULL,
+  `aftpTotalPaidNumber` VARCHAR(45) NULL,
+  `aftpLoggedCost` VARCHAR(45) NULL,
+  `aftpUnCertifiedCost` VARCHAR(45) NOT NULL,
+  `aftpUnCertifiedNumber` VARCHAR(45) NULL,
+  `date` DATETIME NOT NULL,
+  PRIMARY KEY (`aftpDataID`));
+
+DONE
+CREATE TABLE `aggregator`.`AASFAFTP_TB` (
+  `AASFAFTPID` INT NOT NULL AUTO_INCREMENT,
+  `aftpDataID` VARCHAR(45) NOT NULL,
+  `siteID` VARCHAR(45) NOT NULL,
+   PRIMARY KEY (`AASFaftpID`));

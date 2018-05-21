@@ -38,5 +38,14 @@ var nuke = {
         let sql = "TRUNCATE TABLE AASFCrewData_TB";
         return db.query(sql, callback)
     },
+    aftpData: function (callback) {
+        let sql = "TRUNCATE TABLE AFTPData_TB";
+        return db.query(sql, callback)
+    },
+    AASFaftpData: function (callback) {
+        let sql = "TRUNCATE TABLE AASFAFTP_TB";
+        return db.query(sql, callback)
+    },
+    
 }
 module.exports = nuke;

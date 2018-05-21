@@ -11,6 +11,8 @@ var aasfRoute = require('./routes/aasf.route');
 var aircraftRoute = require('./routes/aircraft.route');
 var aircraftavailable = require('./routes/aircraftavailable.route');
 var crews = require('./routes/crews.route');
+var aftps = require('./routes/aftps.route');
+
 
 var nuke = require('./routes/nuke.route');
 
@@ -41,6 +43,8 @@ app.use('/aasf', aasfRoute);
 app.use('/aircraft', aircraftRoute);
 app.use('/aircraftavailable', aircraftavailable);
 app.use('/crews', crews);
+app.use('/aftps', aftps);
+
 
 
 app.use('/nuke', nuke);
