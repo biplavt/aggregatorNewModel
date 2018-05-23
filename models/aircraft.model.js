@@ -31,7 +31,6 @@ var aircraft = {
                         let tempAircraft = valueData[0];
                             //  Insert all aircraft
                             insertACTypes(tempSiteID, tempAircraft, created, function (err, result, fields) {
-                                // console.log(result)
                                 callback(fields, 0);
                                 return result;
                             })

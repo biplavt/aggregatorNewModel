@@ -63,6 +63,20 @@ router.post('/', function (req, res, next) {
             res.json(err);
         } else {
             console.log('Nuked AASFAFTP_TB')
+        }
+    });   
+    nuke.missionData(function (err, count) {
+        if (err) {
+            res.json(err);
+        } else {
+            console.log('Nuked missionData')
+        }
+    });
+    nuke.AASFmissionData(function (err, count) {
+        if (err) {
+            res.json(err);
+        } else {
+            console.log('Nuked AASFmissionData')
             res.json('done'); //or return count for 1 &amp;amp;amp; 0
         }
     });   
@@ -70,4 +84,3 @@ router.post('/', function (req, res, next) {
 });
 
 module.exports = router;
-

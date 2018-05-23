@@ -17,7 +17,6 @@ var AASF = {
     var insertValues = ObjToArray(AASF.AASF_TB);
     var valueData = AASF.AASF_TB[0];
     var siteID = valueData.siteID;
-    // var state = {"stateName":valueData.locState}
     var stateData = valueData.locState;
     var sql = "INSERT INTO AASF_TB (locState,lng,locZip,locPocPhone,siteID,calendarID,clientID,locationName,locCity,locStreet,timezone,calendarAPIKey,lat,locPocEmail) VALUES ?" +
     " ON DUPLICATE KEY UPDATE ?"

@@ -106,3 +106,47 @@ CREATE TABLE `aggregator`.`AASFAFTP_TB` (
   `aftpDataID` VARCHAR(45) NOT NULL,
   `siteID` VARCHAR(45) NOT NULL,
    PRIMARY KEY (`AASFaftpID`));
+
+
+DONE
+CREATE TABLE `aggregator`.`mission_TB` (
+  `missionID` INT NOT NULL AUTO_INCREMENT,
+  `aggMissionNumber` VARCHAR(45) NULL,
+  `flightEventID` INT NOT NULL,
+  `flightApprovedBy` VARCHAR(45) NULL,
+  `flightEventEstHour` VARCHAR(45) NULL,
+  `flightEventStart` VARCHAR(45) NULL,
+  `category` VARCHAR(45) NULL,
+  `flightEventEnd` VARCHAR(45) NULL,
+  `flightMissionNumber` VARCHAR(45) NULL,
+  `flightEventTitle` VARCHAR(45) NOT NULL,
+  `flightEventText` VARCHAR(45) NULL,
+  `flightApprove` VARCHAR(45) NULL,
+  `date` DATETIME NOT NULL,
+  PRIMARY KEY (`missionID`));
+
+
+
+DONE 
+CREATE TABLE `aggregator`.`AASFMission_TB` (
+  `AASFMissionID` INT NOT NULL AUTO_INCREMENT,
+  `aggMissionNumber` VARCHAR(45) NOT NULL,
+  `siteID` VARCHAR(45) NOT NULL,
+   PRIMARY KEY (`AASFMissionID`));
+
+ mission_TB":
+    flightEventID,flightApprovedB,flightEventEstHour,flightEventStar,categor,flightEventEn,flightMissionNumbe,flightEventTitl,flightEventTex,flightApproved
+  
+    `aggMissionNumber`,
+    `flightEventID`,
+    `flightApprovedBy`,
+    `flightEventEstHour`,
+    `flightEventStart`,
+    `category`,
+    `flightEventEnd`,
+    `flightMissionNumber`,
+    `flightEventTitle`,
+    `flightEventText`,
+    `flightApprove`
+
+       "flightEventID":valueData.flightEventID, "flightApprovedBy":valueData.flightApprovedBy, "flightEventEstHours":valueData.flightEventEstHours, "flightEventStart":valueData.flightEventStart, "category":valueData.category, "flightEventEnd":valueData.flightEventEnd, "flightMissionNumber":valueData.flightMissionNumber, "aggMissionNumber":valueData.aggMissionNumber, "flightEventTitle":valueData.flightEventTitle, "flightEventText":valueData.flightEventText, "flightApproved":valueData.flightApprove 
