@@ -1,43 +1,4 @@
 
-CREATE TABLE `aggregator`.`ac_TB` (
-  `acID` INT NOT NULL AUTO_INCREMENT,
-  `migDate` DATETIME NULL,
-  `workOrder` VARCHAR(45) NULL,
-  `remarksUpdatedBy` VARCHAR(45) NULL,
-  `pmd_hours` VARCHAR(45) NULL,
-  `remarks` VARCHAR(45) NULL,
-  `MCRate` VARCHAR(45) NULL,
-  `uic` VARCHAR(45) NOT NULL,
-  `status` VARCHAR(45) NULL,
-  `phase_due` VARCHAR(45) NULL,
-  `ei_sn` VARCHAR(45) NOT NULL,
-  `ei_model` VARCHAR(45) NULL,
-  `remarksUpdatedLast` VARCHAR(45) NULL,
-  `coloroverride` VARCHAR(45) NULL,
-  `date` DATETIME NOT NULL,
-  PRIMARY KEY (`acID`));
-
-
-
-CREATE TABLE `aggregator`.`mission_TB` (
-  `missionID` INT NOT NULL AUTO_INCREMENT,
-  `flightApprovedBy` VARCHAR(345) NULL,
-  `flightEventEstHours` VARCHAR(45) NULL,
-  `flightEventStart` VARCHAR(45) NULL,
-  `category` VARCHAR(45) NULL,
-  `flightEventEnd` VARCHAR(45) NULL,
-  `flightMissionNumber` VARCHAR(45) NULL,
-  `flightEventTitle` VARCHAR(545) NOT NULL,
-  `flightEventText` VARCHAR(MAX) NULL,
-  `flightApproved` VARCHAR(45) NULL,
-  `date` DATETIME NOT NULL,
-  PRIMARY KEY (`missionID`));
-
-
-
-
-
-
 DONE
 CREATE TABLE `aggregator`.`AASFAircraftData_TB` (
   `AASFAircraftDataID` INT NOT NULL AUTO_INCREMENT,
@@ -134,19 +95,28 @@ CREATE TABLE `aggregator`.`AASFMission_TB` (
   `siteID` VARCHAR(45) NOT NULL,
    PRIMARY KEY (`AASFMissionID`));
 
- mission_TB":
-    flightEventID,flightApprovedB,flightEventEstHour,flightEventStar,categor,flightEventEn,flightMissionNumbe,flightEventTitl,flightEventTex,flightApproved
-  
-    `aggMissionNumber`,
-    `flightEventID`,
-    `flightApprovedBy`,
-    `flightEventEstHour`,
-    `flightEventStart`,
-    `category`,
-    `flightEventEnd`,
-    `flightMissionNumber`,
-    `flightEventTitle`,
-    `flightEventText`,
-    `flightApprove`
 
-       "flightEventID":valueData.flightEventID, "flightApprovedBy":valueData.flightApprovedBy, "flightEventEstHours":valueData.flightEventEstHours, "flightEventStart":valueData.flightEventStart, "category":valueData.category, "flightEventEnd":valueData.flightEventEnd, "flightMissionNumber":valueData.flightMissionNumber, "aggMissionNumber":valueData.aggMissionNumber, "flightEventTitle":valueData.flightEventTitle, "flightEventText":valueData.flightEventText, "flightApproved":valueData.flightApprove 
+DONE
+CREATE TABLE `aggregator`.`ac_TB` (
+  `acID` INT NOT NULL AUTO_INCREMENT,
+  `migDate` DATETIME NULL,
+  `workOrder` VARCHAR(45) NULL,
+  `remarksUpdatedBy` VARCHAR(700) NULL,
+  `pmd_hours` VARCHAR(45) NULL,
+  `remarks` VARCHAR(MAX) NULL,
+  `MCRate` VARCHAR(45) NULL,
+  `uic` VARCHAR(45) NULL,
+  `status` VARCHAR(45) NULL,
+  `phase_due` VARCHAR(45) NULL,
+  `ei_sn` VARCHAR(45) NULL,
+  `ei_model` VARCHAR(45) NULL,
+  `remarksUpdatedLast` DATETIME NULL,
+  `coloroverride` VARCHAR(45) NULL,
+   PRIMARY KEY (`ac_ID`));
+DONE
+CREATE TABLE `aggregator`.`AASFac_TB` (
+  `AASFacID` INT NOT NULL AUTO_INCREMENT,
+  `acID` INT(45) NOT NULL,
+  `siteID` VARCHAR(45) NOT NULL,
+   PRIMARY KEY (`AASFacID`));
+

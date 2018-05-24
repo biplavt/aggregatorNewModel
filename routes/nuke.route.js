@@ -77,10 +77,23 @@ router.post('/', function (req, res, next) {
             res.json(err);
         } else {
             console.log('Nuked AASFmissionData')
+        }
+    });  
+    nuke.aircratDetailData(function (err, count) {
+        if (err) {
+            res.json(err);
+        } else {
+            console.log('Nuked aircratDetailData')
+        }
+    });
+    nuke.AASFaircratDetailData(function (err, count) {
+        if (err) {
+            res.json(err);
+        } else {
+            console.log('Nuked AASFaircratDetailData')
             res.json('done'); //or return count for 1 &amp;amp;amp; 0
         }
     });   
-    
 });
 
 module.exports = router;

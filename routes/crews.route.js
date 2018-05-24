@@ -3,7 +3,6 @@ var router = express.Router();
 var crews = require('../models/crews.model');
 router.post('/', function (req, res, next) {
     let siteID
-    console.log(req.body)
     req.body.crewData_TB.forEach(element => {
         if (element['siteID']){
              siteID = element['siteID']
@@ -14,7 +13,7 @@ router.post('/', function (req, res, next) {
         if (err) {
             res.json(err);
             if (err.code === 'ETIMEDOUT') {
-                console.log('My dish error: ', util.inspect(err, { showHidden: true, depth: 2 }));
+                console.log('My  error: ', util.inspect(err, { showHidden: true, depth: 2 }));
             }
         } else {
             crews.insertJoin(siteID, count.insertId, function (err, extra) {
