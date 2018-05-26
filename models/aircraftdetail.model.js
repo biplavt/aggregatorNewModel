@@ -11,18 +11,20 @@ function ObjToArray(obj) {
 }
 
 var ac = {
-
-  
   aircraftDetail: function (ac, callback) {
-    let insertValues = ObjToArray(ac);
-    console.log(insertValues);
-      var sql = "INSERT INTO `ac_TB` (migDate,workOrder,remarksUpdatedBy,pmd_hours,remarks,MCRate,uic,status,phase_due,ei_sn, ei_model,remarksUpdatedLast, coloroverride) VALUES ?";
-      return db.query(sql, [insertValues], callback)
+    ac.forEach(element => {
+      let insertValues = ObjToArray(element);
+      // console.log(insertValues);
+        var sql = "INSERT INTO ac_TB (migDate,workOrder,remarksUpdatedBy,pmd_hours,remarks,MCRate,uic,status,phase_due,ei_sn, ei_model,remarksUpdatedLast, coloroverride) VALUES ?";
+        return db.query(sql, [[insertValues]], callback)
+    });
   },
-  insertJoin: function (siteID, aftpDataID, newcallback) {
-      // let joininsertValues = [[aftpDataID, siteID]];
-      // var joinsql = "INSERT INTO `AASFAFTP_TB` (aftpDataID, siteID) VALUES ?";
-      // return db.query(joinsql, [joininsertValues], newcallback)
+  insertJoin: function (siteID, acID, newcallback) {
+    console.log(siteID);
+    console.log(acID);
+      let joininsertValues = [acID, siteID];
+      var joinsql = "INSERT INTO AASFac_TB (acID, siteID) VALUES ?";
+      return db.query(joinsql, [[joininsertValues]], newcallback)
   }
 }
 module.exports = ac;
