@@ -12,11 +12,8 @@ function ObjToArray(obj) {
 
 var aftps = {
   insertAftps: function (aftps, callback) {
-    console.log(aftps);
     aftps.AFTPData_TB.pop(); //removes siteID
       let insertValues = ObjToArray(aftps.AFTPData_TB);
-      // insertValues = [].concat.apply([], insertValues);//removes outer []'s
-      console.log(insertValues);
       var sql = "INSERT INTO `AFTPData_TB` (date,aftpLoggedNumber,aftpTimeliness,aftpUnPaidCost,aftpUnPaidNumber,aftpTotalPaidCost,aftpTotalPaidNumber,aftpLoggedCost,aftpUnCertifiedCost,aftpUnCertifiedNumber) VALUES ?";
       return db.query(sql, [insertValues], callback)
   },

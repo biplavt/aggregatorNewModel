@@ -12,9 +12,6 @@ router.post('/', function (req, res, next) {
     aftps.insertAftps(req.body, function (err, count) {
         if (err) {
             res.json(err);
-            if (err.code === 'ETIMEDOUT') {
-                console.log('My dish error: ', util.inspect(err, { showHidden: true, depth: 2 }));
-            }
         } else {
             aftps.insertJoin(siteID, count.insertId, function (err, extra) {
                 if (err) {
