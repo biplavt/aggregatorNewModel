@@ -6,5 +6,6 @@ env_variables:
   SQL_PASSWORD: ziggy11!!
   SQL_DATABASE: aggregator
   # e.g. my-awesome-project:us-central1:my-cloud-sql-instance
-  INSTANCE_CONNECTION_NAME: aasd-api-aggragator:us-central1:asd-aggragator
+  # INSTANCE_CONNECTION_NAME: aasd-api-aggragator:us-central1:asd-aggragator
+  INSTANCE_CONNECTION_NAME: asdapi-prod:us-central1:asdapi-prod
 
