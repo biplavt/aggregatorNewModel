@@ -9,7 +9,8 @@ router.post('/', function (req, res, next) {
             if (err) {
                 res.json(err);
             } else {
-                res.json(count); //or return count for 1 &amp;amp;amp; 0
+                // res.json(count); //or return count for 1 &amp;amp;amp; 0
+                console.log(res.json('done: no items added'));
             }
         }); 
 

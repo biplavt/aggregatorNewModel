@@ -6,6 +6,6 @@ var mysql = require('mysql');
         password : 'ziggy11!!',
         database : 'aggregator',
         multipleStatements: true,
-        socketPath: '/cloudsql/asd-api-aggragator:us-central1:asd-aggragator'
+        // socketPath: '/cloudsql/asd-api-aggragator:us-central1:asd-aggragator'
     });
     module.exports = connection;
