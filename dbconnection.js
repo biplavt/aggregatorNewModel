@@ -8,7 +8,8 @@ var mysql = require('mysql');
     //     multipleStatements: true,
     //     // socketPath: '/cloudsql/asd-api-aggragator:us-central1:asd-aggragator'
     // });
-    // prod
+    // PROD
+    
     var connection = mysql.createConnection({
         host     : '104.154.22.71',
         user     : 'SA',
