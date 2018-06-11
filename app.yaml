@@ -7,5 +7,4 @@ env_variables:
   SQL_DATABASE: aggregator
   # e.g. my-awesome-project:us-central1:my-cloud-sql-instance
   # INSTANCE_CONNECTION_NAME: asd-api-aggragator:us-central1:asd-aggragator
-  INSTANCE_CONNECTION_NAME: asdapi-prod:us-central1:asdapi-prod
-
+  INSTANCE_CONNECTION_NAME: asdapi-prod:us-central1:asd-aggragator
