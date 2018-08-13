@@ -11,6 +11,12 @@ router.post('/', function (req, res, next) {
         }
     }); 
     
+}),
+router.get('/', function (req, res, next) {
+    
+    console.log('yippie');
+    
+    
 })
 
 module.exports = router;

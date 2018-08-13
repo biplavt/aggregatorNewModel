@@ -14,7 +14,7 @@ var ac = {
   aircraftDetail: function (ac, callback) {
     ac.forEach(element => {
       let insertValues = ObjToArray(element);
-        var sql = "INSERT INTO ac_TB (migDate,workOrder,remarksUpdatedBy,pmd_hours,remarks,MCRate,uic,status,phase_due,ei_sn, ei_model,remarksUpdatedLast, coloroverride) VALUES ?";
+        var sql = "INSERT INTO ac_TB (migDate,workOrder,remarksUpdatedBy,pmd_hours,remarks,MCRate,uic,status,orgin,phase_due,ei_sn, ei_model,remarksUpdatedLast, coloroverride) VALUES ?";
         return db.query(sql, [[insertValues]], callback)
     });
   },
