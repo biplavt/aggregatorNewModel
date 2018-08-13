@@ -11,7 +11,7 @@ var mysql = require('mysql');
     // PROD
     
     var connection = mysql.createConnection({
-        host     : '104.154.22.71',
+        // host     : '104.154.22.71',
         user     : 'SA',
         password : 'ziggy11!!',
         database : 'aggregator',
