@@ -14,8 +14,12 @@ router.post('/', function (req, res, next) {
 }),
 router.get('/', function (req, res, next) {
     
-    console.log('yippie');
+    console.log('activated');
     
+    AASF.getAASFs(function (err, count) {
+		console.log('yippie');
+        
+    });
     
 })
 

@@ -53,10 +53,7 @@ app.use('/aircraftdetail', aircraftdetail);
 app.use('/crypt', crypt);
 
 
-
-
-
-
+// Used to delete all items in Db
 app.use('/nuke', nuke);
 
 

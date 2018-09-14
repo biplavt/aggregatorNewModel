@@ -34,5 +34,9 @@ var AASF = {
         })
       return db.query(sql, [insertValues, updateSql] , callback);
     },
+   getAASFs: function (callback) {
+      // console.log(AASF);
+      return callback;
+   },
 };
 module.exports = AASF;
