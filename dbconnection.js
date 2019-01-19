@@ -1,12 +1,12 @@
 var mysql = require('mysql');
     // Dev
     var connection = mysql.createConnection({
-        // host     : '35.225.249.162',
+        host     : '35.225.249.162', //comment this out on deploy
         user     : 'SA',
         password : 'ziggy11!!',
         database : 'aggregator',
         multipleStatements: true,
-        socketPath: '/cloudsql/asd-api-aggragator:us-central1:asd-aggragator'
+        // socketPath: '/cloudsql/asd-api-aggragator:us-central1:asd-aggragator'
     });
     // PROD
     

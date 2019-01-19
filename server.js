@@ -14,6 +14,7 @@ var crews = require('./routes/crews.route');
 var aftps = require('./routes/aftps.route');
 var missions = require('./routes/missions.route');
 var aircraftdetail = require('./routes/aircraftdetail.route');
+var AASFAFTPTotals = require('./routes/AASFAFTPTotals.route');
 
 
 var crypt = require('./routes/crypt.route');
@@ -51,6 +52,7 @@ app.use('/aftps', aftps);
 app.use('/missions', missions);
 app.use('/aircraftdetail', aircraftdetail);
 app.use('/crypt', crypt);
+app.use('/AASFAFTPTotals',AASFAFTPTotals);
 
 
 // Used to delete all items in Db

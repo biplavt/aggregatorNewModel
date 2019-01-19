@@ -11,6 +11,7 @@ function ObjToArray(obj) {
 }
 var aircraft = {
     upsertAircraft: function (aircraft, callback) {
+        // statements above, calling below
         removeAircraftTypeBySiteID = function (siteID, removeCallback) {
             return db.query("DELETE FROM aircraftType_TB WHERE siteID=?", siteID,removeCallback)
         }
@@ -18,7 +19,7 @@ var aircraft = {
             var post = {'siteID':tempSiteID, 'aircraftType':tempAircraft, 'date':created}
             return db.query('INSERT INTO aircraftType_TB SET ?', post, insertCallBack);  
         }
-       
+         //    calling
         if (typeof aircraft.aircraftType_TB[0].siteID !== 'undefined' || aircraft.aircraftType_TB[0].siteID === null) {
               let newSiteID = aircraft.aircraftType_TB[0].siteID;
               let insertValues = ObjToArray(aircraft.aircraftType_TB);

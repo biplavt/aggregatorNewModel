@@ -86,6 +86,13 @@ router.post('/', function (req, res, next) {
             console.log('Nuked aircratDetailData')
         }
     });
+    nuke.AASFAFTPTotalsByUserData(function (err, count) {
+        if (err) {
+            res.json(err);
+        } else {
+            console.log('Nuked AASFAFTPTotalsByUserData')
+        }
+    });
     nuke.AASFaircratDetailData(function (err, count) {
         if (err) {
             res.json(err);

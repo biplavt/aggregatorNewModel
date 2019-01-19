@@ -12,12 +12,17 @@ function ObjToArray(obj) {
 var missions = {
   upsertMissions: function (mission, callback) {
         upsertFunction = function (mission, insertCallBack) {  
-            var insertValues = ObjToArray(mission);
+          // because the insert is an array, order maters, so alphabetisize  
+            var alphabeticalOrder = Object.keys(mission).sort().reduce((accumulator, currentValue) => {
+              accumulator[currentValue] = mission[currentValue];
+              return accumulator;
+            }, {});
+            var insertValues = ObjToArray(alphabeticalOrder); 
             var valueData = mission;
             var sql = "SET @update_id := 0;"+
-                "INSERT INTO mission_TB (date, flightEventID, flightApprovedBy, flightEventEstHours, flightEventStart, category,flightEventEnd,flightMissionNumber,aggMissionNumber,flightEventTitle,flightEventText,flightApproved) VALUES ?" +
+                "INSERT INTO mission_TB (aggMissionNumber,canceledWhy,category,date,flightApproved,flightApprovedBy,flightEventEnd,flightEventEstHours,flightEventID,flightEventStart,flightEventText,flightEventTitle,flightMissionNumber,tailnumber) VALUES ?" +
                 "ON DUPLICATE KEY UPDATE ?"
-            var updateSql = { "date":valueData.date, "flightEventID":valueData.flightEventID, "flightApprovedBy":valueData.flightApprovedBy, "flightEventEstHours":valueData.flightEventEstHours, "flightEventStart":valueData.flightEventStart, "category":valueData.category, "flightEventEnd":valueData.flightEventEnd, "flightMissionNumber":valueData.flightMissionNumber, "flightEventTitle":valueData.flightEventTitle, "flightEventText":valueData.flightEventText, "flightApproved":valueData.flightApprove}
+            var updateSql = { "date":valueData.date, "flightEventID":valueData.flightEventID, "flightApprovedBy":valueData.flightApprovedBy, "flightEventEstHours":valueData.flightEventEstHours, "flightEventStart":valueData.flightEventStart, "category":valueData.category, "flightEventEnd":valueData.flightEventEnd, "flightMissionNumber":valueData.flightMissionNumber, "flightEventTitle":valueData.flightEventTitle, "flightEventText":valueData.flightEventText, "flightApproved":valueData.flightApprove, "tailnumber":valueData.tailnumber, "canceledWhy":valueData.canceledWhy}
           return db.query(sql, [[insertValues], updateSql], insertCallBack);
         }
         insertAASFMission = function (missionID, siteID, AASFMissionCallBAck) {  
@@ -29,22 +34,23 @@ var missions = {
           return db.query(sql, [[insertValues], updateSql], AASFMissionCallBAck)
         }
         mission.forEach(element => {
-          let siteID = element.aggMissionNumber.split("_").shift();
-              upsertFunction(element, function (err, result, fields) {
-                  for (var i = 0; i < result.length; i++) {
-                      for (var OkPacket in result[i]) {
-                          if(OkPacket == 'insertId'){
-                            if (result[i][OkPacket] > 0) {
-                              insertAASFMission(result[i][OkPacket], siteID, function (error, insertResult) {
-                              })
-                            }
+        // loop over each mission then insert it above in upsertFunction
+        let siteID = element.aggMissionNumber.split("_").shift();
+            upsertFunction(element, function (err, result, fields) {
+                for (var i = 0; i < result.length; i++) {
+                    for (var OkPacket in result[i]) {
+                        if(OkPacket == 'insertId'){
+                          if (result[i][OkPacket] > 0) {
+                            insertAASFMission(result[i][OkPacket], siteID, function (error, insertResult) {
+                            })
                           }
-                      } 
-                  } 
-                  return result;
-                })
-                callback(callback);
-          })
+                        }
+                    } 
+                } 
+                return result;
+              })
+              callback(callback);
+        })
    }
 };
 module.exports = missions;

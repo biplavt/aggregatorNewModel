@@ -58,6 +58,10 @@ var nuke = {
         let sql = "TRUNCATE TABLE ac_TB";
         return db.query(sql, callback)
     },
+    AASFAFTPTotalsByUserData: function (callback) {
+        let sql = "TRUNCATE TABLE AASFAFTPTotalsByUser_TB";
+        return db.query(sql, callback)
+    },
     AASFaircratDetailData: function (callback) {
         let sql = "TRUNCATE TABLE AASFac_TB";
         return db.query(sql, callback)
