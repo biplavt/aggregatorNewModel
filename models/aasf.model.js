@@ -12,6 +12,8 @@ function ObjToArray(obj) {
   });
 }
 
+
+
 var AASF = {
   upsertAASFAndState: function (AASF, callback) {
     var insertValues = ObjToArray(AASF.AASF_TB);
@@ -20,23 +22,35 @@ var AASF = {
     var stateData = valueData.locState;
     var sql = "INSERT INTO AASF_TB (locState,lng,locZip,locPocPhone,siteID,calendarID,clientID,locationName,locCity,locStreet,timezone,calendarAPIKey,lat,locPocEmail) VALUES ?" +
     " ON DUPLICATE KEY UPDATE ?"
+
     var updateSql = {"locState":valueData.locState, "lng":valueData.lng, "locZip":valueData.locZip, "locPOCphone":valueData.locPOCphone, "siteID":valueData.siteID, "clientID":valueData.clientID, "calendarID":valueData.calendarID, "locationName":valueData.locationName, "locCity":valueData.locCity, "locStreet":valueData.locStreet, "timezone":valueData.timezone, "calendarAPIKey":valueData.calendarAPIKey, "lat":valueData.lat, "locPOCEmail":valueData.locPOCEmail}
-          var upsertState = function (state, newCallback){
-              var insertStateValues = [[stateData,siteID]];
-              var updatedState = {"stateName":stateData, "siteID":siteID}
-              var insertedSQL = 
-              "SET @update_id := 0;"+
-              "INSERT INTO state_TB (stateName, siteID) VALUES ?" +
-              " ON DUPLICATE KEY UPDATE ?"
-              return db.query(insertedSQL,[insertStateValues, updatedState], newCallback)
-          }
-        upsertState(stateData, function (err, item) {
-        })
-      return db.query(sql, [insertValues, updateSql] , callback);
-    },
-   getAASFs: function (callback) {
-      console.log(AASF);
-      return callback;
-   },
+      
+    var upsertState = function (state, newCallback){
+        var insertStateValues = [[stateData,siteID]];
+        var updatedState = {"stateName":stateData, "siteID":siteID}
+        var insertedSQL = 
+        "SET @update_id := 0;"+
+        "INSERT INTO state_TB (stateName, siteID) VALUES ?" +
+        " ON DUPLICATE KEY UPDATE ?"
+        return db.query(insertedSQL,[insertStateValues, updatedState], newCallback)
+    } 
+
+    upsertState(stateData, function (err, item) {})
+      
+    return db.query(sql, [insertValues, updateSql] , callback);
+  },
+  
+  getAASFs: function () {
+    var q='SELECT * FROM ac_TB;';
+    return new Promise(function(resolve,reject){
+      db.query(q, function (error, results, fields) {
+        if (error) reject(error);
+        resolve (results);
+      });
+    })   
+  }
 };
+
+
+
 module.exports = AASF;

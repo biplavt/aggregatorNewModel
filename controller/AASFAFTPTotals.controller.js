@@ -1,7 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var AASFAFTPTotals = require('../models/AASFAFTPTotals.model');
-router.post('/', function (req, res, next) {
+
+
+function postAASFTotals(req,res) {
     if (req.body.AASFAFTPTotalsByUser_TB != ''){
         AASFAFTPTotals.AFTPUpsert( req.body.AASFAFTPTotalsByUser_TB, function (aftps, count) {
             if (count) {
@@ -12,6 +14,9 @@ router.post('/', function (req, res, next) {
     } else {
         // console.log(res.json('done: no items added'));
     }
-});
-module.exports = router;
+};
+
+module.exports = {
+    postAASFTotals
+}
 

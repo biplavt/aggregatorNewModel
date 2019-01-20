@@ -1,20 +1,24 @@
 var express = require('express');
 var router = express.Router();
-var aircraft = require('../models/aircraftavailable.model');
-router.post('/', function (req, res, next) {
+var crews = require('../models/crews.model');
+
+
+function postCrewData(req,res) {
     let siteID
-    req.body.aircraftData_TB.forEach(element => {
+    req.body.crewData_TB.forEach(element => {
         if (element['siteID']){
              siteID = element['siteID']
         }
     });
-    aircraft.insertAircraftAvailable(req.body, function (err, count) {
+    crews.insertCrewsAvailable(req.body, function (err, count) {
         // let siteID = req.body
         if (err) {
             res.json(err);
-            
+            if (err.code === 'ETIMEDOUT') {
+                console.log('My  error: ', util.inspect(err, { showHidden: true, depth: 2 }));
+            }
         } else {
-            aircraft.insertJoin(siteID,count.insertId, function (err, extra) {
+            crews.insertJoin(siteID, count.insertId, function (err, extra) {
                 if (err) {
                     res.json(err);
                 } else {
@@ -24,6 +28,7 @@ router.post('/', function (req, res, next) {
             })
         }
     }); 
-});
+};
 
-module.exports = router;
+module.exports = {
+postCrewData};

@@ -16,7 +16,10 @@ var calculateDays=function(timeGiven){
         console.log('days: ',days);
         return days;
 }
-router.post('/', function (req, res, next) {
+
+
+function postMissions(req,res) {
+    console.log('req.body',req.body.mission_TB);
     
     if (req.body.mission_TB != ''){
         missions.upsertMissions( req.body.mission_TB, function (err, count) {
@@ -32,8 +35,9 @@ router.post('/', function (req, res, next) {
     } else {
         console.log(res.json('done: no items added'));
     }
-}),
-router.get('/', function (req, res, next) {
+}
+
+function getMissions(req,res) {
     console.log('yippieMission');
     //var q='SELECT * FROM AASF_TB;';
     var q='SELECT * FROM mission_TB;';
@@ -56,9 +60,10 @@ router.get('/', function (req, res, next) {
     });
     //console.log( db.query('SELECT * FROM AASF_TB;'));
     // return db.query('INSERT INTO aircraftType_TB SET ?', post, insertCallBack);
-    console.log('yippieMission');
+    console.log('yippieMission');   
+}
 
-    
-})
-
-module.exports = router;
+module.exports = {
+postMissions,
+getMissions
+}

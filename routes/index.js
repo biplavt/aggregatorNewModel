@@ -2,8 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+var getIndex =function (req,res) {
   res.render('index', { title: 'ASD Aggregator - Please Include API Key' });
-});
+};
 
-module.exports = router;
+module.exports = {
+	getIndex
+};

@@ -6,20 +6,9 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var cors=require('cors');
 
-var routes = require('./routes/index');
-var aasfRoute = require('./routes/aasf.route');
-var aircraftRoute = require('./routes/aircraft.route');
-var aircraftavailable = require('./routes/aircraftavailable.route');
-var crews = require('./routes/crews.route');
-var aftps = require('./routes/aftps.route');
-var missions = require('./routes/missions.route');
-var aircraftdetail = require('./routes/aircraftdetail.route');
-var AASFAFTPTotals = require('./routes/AASFAFTPTotals.route');
 
-
-var crypt = require('./routes/crypt.route');
-
-var nuke = require('./routes/nuke.route');
+var crypt = require('./controller/crypt.controller');
+var nuke = require('./controller/nuke.controller');
 
 
 // var crewRoute = require('./routes/crew.route');
@@ -42,22 +31,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-app.use('/', routes);
-app.use('/aasf', aasfRoute);
-app.use('/aircraft', aircraftRoute);
-app.use('/aircraftavailable', aircraftavailable);
-app.use('/crews', crews);
-app.use('/aftps', aftps);
-app.use('/missions', missions);
-app.use('/aircraftdetail', aircraftdetail);
-app.use('/crypt', crypt);
-app.use('/AASFAFTPTotals',AASFAFTPTotals);
-
+app.use(require('./routes/appRoutes'));
 
 // Used to delete all items in Db
 app.use('/nuke', nuke);
-
+app.use('/crypt', crypt);
 
 
 
@@ -70,6 +48,7 @@ app.use('/nuke', nuke);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
+	console.log('error re');
 var err = new Error('Not Found');
 err.status = 404;
 next(err);

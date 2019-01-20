@@ -1,19 +1,24 @@
 var express = require('express');
 var router = express.Router();
-var aftps = require('../models/aftps.model');
-router.post('/', function (req, res, next) {
-    let siteID
-    console.log(req.body)
-    req.body.AFTPData_TB.forEach(element => {
+var aircraft = require('../models/aircraftavailable.model');
+
+
+function postAircraftData(req,res) {
+    let siteID;
+    // console.log('hi');
+    req.body.aircraftData_TB.forEach(element => {
         if (element['siteID']){
              siteID = element['siteID']
         }
     });
-    aftps.insertAftps(req.body, function (err, count) {
+    
+    aircraft.insertAircraftAvailable(req.body, function (err, count) {
+        // let siteID = req.body
         if (err) {
             res.json(err);
+            
         } else {
-            aftps.insertJoin(siteID, count.insertId, function (err, extra) {
+            aircraft.insertJoin(siteID,count.insertId, function (err, extra) {
                 if (err) {
                     res.json(err);
                 } else {
@@ -23,9 +28,8 @@ router.post('/', function (req, res, next) {
             })
         }
     }); 
-})
-router.get('/', function (req, res, next) {
-    res.json('worked bla');
-})
+};
 
-module.exports = router;
+module.exports = {
+    postAircraftData
+}

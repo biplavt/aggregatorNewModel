@@ -1,4 +1,6 @@
 var db = require('../dbconnection'); //reference of dbconnection.js
+
+
 function ObjToArray(obj) {
   var arr = obj instanceof Array;
   return (arr ? obj : Object.keys(obj)).map(function(i) {
@@ -9,6 +11,8 @@ function ObjToArray(obj) {
       return val;
   });
 }
+
+
 var aircraft = {
     insertAircraftAvailable: function (aircraft, callback) {
         aircraft.aircraftData_TB.pop(); //removes siteID
