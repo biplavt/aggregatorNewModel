@@ -1,4 +1,5 @@
 var db = require('../dbconnection'); //reference of dbconnection.js
+
 function ObjToArray(obj) {
   var arr = obj instanceof Array;
   return (arr ? obj : Object.keys(obj)).map(function(i) {
@@ -10,20 +11,62 @@ function ObjToArray(obj) {
   });
 }
 
-var crews = {
-  insertCrewsAvailable: function (crews, callback) {
-    crews.crewData_TB.pop(); //removes siteID
+function insertCrewsAvailable(crews){
+      crews.crewData_TB.pop(); //removes siteID
       let insertValues = ObjToArray(crews.crewData_TB);
-      // insertValues = [].concat.apply([], insertValues);//removes outer []'s
       console.log(insertValues);
       var sql = "INSERT INTO crewData_TB (date, ce, mo, pc, category, pi, fe) VALUES ?";
-      return db.query(sql, [insertValues], callback)
-  },
-  
-  insertJoin: function (siteID, crewDataID, newcallback) {
-      let joininsertValues = [[crewDataID, siteID]];
-      var joinsql = "INSERT INTO `AASFCrewData_TB` (crewDataID, siteID) VALUES ?";
-      return db.query(joinsql, [joininsertValues], newcallback)
-  }
+      return new Promise(function(resolve,reject){
+        db.query(sql, [insertValues],function(err,count){
+            if(err){
+                reject(err);
+                if (err.code === 'ETIMEDOUT') {
+                console.log('My  error: ', util.inspect(err, { showHidden: true, depth: 2 }));
+                }
+            }else{
+                resolve(count);
+            }
+        })
+      })
 }
-module.exports = crews;
+
+
+function insertJoin (siteID, crewDataID, newcallback) {
+    
+    let joininsertValues = [[crewDataID, siteID]];
+    var joinsql = "INSERT INTO `AASFCrewData_TB` (crewDataID, siteID) VALUES ?";
+    return new Promise(function(resolve, reject){
+        db.query(joinsql, [joininsertValues], function(err,count){
+            if(err)
+                reject(err);
+            else{
+                console.log('worked');
+                resolve(count);
+            }
+        })
+
+    })
+
+}
+
+var postCrews = function(req,res) {
+
+    let siteID;
+    req.body.crewData_TB.forEach(element => {
+        if (element['siteID']){
+             siteID = element['siteID']
+        }
+    });
+
+      insertCrewsAvailable(req.body).then((result)=>{
+        return result;
+      }).then(function(result){
+        insertJoin(siteID,result.insertId).then(function(result){
+            console.log('worked');
+            res.json(result);
+        },(error)=>{
+            res.json(err);
+        })
+      })
+}
+module.exports ={ postCrews}

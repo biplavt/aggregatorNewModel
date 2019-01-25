@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var missions = require('../models/missions.model');
+var missionsModel = require('../models/missions.model');
 var db = require('../dbconnection'); //reference of dbconnection.js
 var moment=require('moment');
 
@@ -19,22 +19,7 @@ var calculateDays=function(timeGiven){
 
 
 function postMissions(req,res) {
-    console.log('req.body',req.body.mission_TB);
-    
-    if (req.body.mission_TB != ''){
-        missions.upsertMissions( req.body.mission_TB, function (err, count) {
-            if (err) {
-                res.json(err);
-                
-            } else {
-                res.json(count); //or return count for 1 &amp;amp;amp; 0
-                console.log(res.json('done: no items added'));
-            }
-        }); 
-
-    } else {
-        console.log(res.json('done: no items added'));
-    }
+    missionsModel.postMissions(req,res);
 }
 
 function getMissions(req,res) {

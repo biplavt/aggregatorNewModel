@@ -1,22 +1,37 @@
 var express = require('express');
 var router = express.Router();
-var AASF = require('../models/aasf.model');
+var AASFcontroller = require('../models/aasf.model');
 var db = require('../dbconnection'); //reference of dbconnection.js
+
+
+function ObjToArray(obj) {
+  var arr = obj instanceof Array;
+
+  return (arr ? obj : Object.keys(obj)).map(function(i) {
+    var val = arr ? i : obj[i];
+    if(typeof val === 'object')
+      return ObjToArray(val);
+    else
+      return val;
+  });
+}
+
 
 function postAASF(req,res) {
     
-    AASF.upsertAASFAndState(req.body, function (err, count) {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(count.insertId); //or return count for 1 &amp;amp;amp; 0
-        }
-    }); 
-    
+    var AASF=req.body;
+    var insertValues =ObjToArray(AASF.AASF_TB);
+    var valueData = AASF.AASF_TB[0];
+
+    AASFcontroller.upsertAASFAndState(insertValues, valueData).then((result)=>{
+            res.json(result.insertId); //or return count for 1 &amp;amp;amp; 0
+        },(error)=>{
+            console.log(error);
+        });    
 }
 
 function getAASF(req,res) {
-    AASF.getAASFs().then(function(result){
+    AASFcontroller.getAASFs().then(function(result){
         res.send(result);
     },function(error){
         res.send(error);

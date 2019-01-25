@@ -4,13 +4,8 @@ var aircraft = require('../models/aircraft.model');
 
 
 function postAircraft(req,res) {
-    aircraft.upsertAircraft(req.body, function (err, count) {
-        if (err) {
-            res.json(err);
-        } else {
-            res.json(count.insertId); //or return count for 1 &amp;amp;amp; 0
-        }
-    }); 
+    aircraft.postGivenAircraft(req, res);
+       
 }
 
 module.exports = {
