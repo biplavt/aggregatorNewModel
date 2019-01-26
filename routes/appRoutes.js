@@ -34,7 +34,7 @@ router.route('/missions').post(missions.postMissions);//x
 router.route('/missions').get(missions.getMissions);//w
 
 router.route('/aircraftdetail').post(aircraftdetail.postAircraftDetail);//x
-router.route('/aircraftdetail').get(aircraftdetail.getAircraftDetail);//w for the first time
+// router.route('/aircraftdetail').get(aircraftdetail.getAircraftDetail);//w for the first time
 
 router.route('/AASFAFTPTotals').post(AASFAFTPTotals.postAASFTotals);//x
 
